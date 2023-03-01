@@ -60,5 +60,31 @@ char *copy_str(char *inStr, short len){
 };
 
 char **tokenize(char* str){
-  
+  int count = count_tokens(str);
+  char **tokens = (char**)malloc(sizeof(char*)*count);
+  int i =0;
+  str = token_start(str);
+  while(i<count){
+    char *start = token_start(str);
+    char *end = token_terminator(str);
+    int len = end - start;
+    tokens[i]= copy_str(str,length);
+    i++;
+    str = token_start(end);
+  }
+  return tokens;
+};
+
+void print_tokens(char **tokens){
+  while(*tokens!=0){
+    printf("%s\n",*tokens);
+    tokens++
+  }
+};
+
+void free_tokens(char **tokens){
+  while(*tokens!=0){
+    free(tokens);
+    tokens++;
+  }
 };

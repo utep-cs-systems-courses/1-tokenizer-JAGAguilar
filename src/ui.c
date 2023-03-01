@@ -1,7 +1,14 @@
 #include "stdio.h"
 #include "string.h"
+#include "tokenizer.c"
+
 
 int main (){
+  int b = non_space_char('b'); 
+  printf("%d",b);
+  char *c = "b";
+  char d =  *token_start(c);
+  printf("%d",d);
   char str[500]; //large enough to hold a long string
   char *quit = "q";
   while(1) {
