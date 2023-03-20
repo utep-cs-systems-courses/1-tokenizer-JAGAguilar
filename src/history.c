@@ -1,6 +1,8 @@
 #include <string.h>
-#include "stdio.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "history.h"
+#include "tokenizer.h"
 
 List* init_history(){
   List *hist = (List*)malloc(sizeof(List));
@@ -9,7 +11,7 @@ List* init_history(){
 };
 
 void add_history(List *list, char *str){
-  if(*list->root == 0){
+  if(list->root == 0){
     Item *item = (Item*)malloc(sizeof(Item));
     item->id = 0;
     char *start = token_start(str);
@@ -49,9 +51,14 @@ char *get_history(List *list,int id){
 
 void print_history(List *list){
   Item *temp = list->root;
-  while(temp != 0){
-    printf("%d. %s\n",temp->id,temp->str);
-    temp = temp->next;
+  if(temp == 0){
+    printf("Unavailable: No History");
+  }
+  else{
+    while(temp != 0){
+      printf("%d. %s\n",temp->id,temp->str);
+      temp = temp->next;
+    }
   }
 }
 

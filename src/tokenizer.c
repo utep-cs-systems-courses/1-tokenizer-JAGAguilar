@@ -1,6 +1,7 @@
 #include "tokenizer.h"
 #include "stdio.h"
 #include <string.h>
+#include <stdlib.h>
 
 //the ; after each function is to remind myself where it ends
 int space_char(char c){
@@ -48,7 +49,7 @@ int count_tokens(char *str){
 };
 
 char *copy_str(char *inStr, short len){
-  char *str = (char*)malloc(sizeof(char) * len);
+  char *str = (char*)malloc(sizeof(char)*len);
   char *temp_String = str;
   len--;
   while(len>=0){
@@ -68,7 +69,7 @@ char **tokenize(char* str){
     char *start = token_start(str);
     char *end = token_terminator(str);
     int len = end - start;
-    tokens[i]= copy_str(str,length);
+    tokens[i]= copy_str(str,len);
     i++;
     str = token_start(end);
   }
@@ -78,7 +79,7 @@ char **tokenize(char* str){
 void print_tokens(char **tokens){
   while(*tokens!=0){
     printf("%s\n",*tokens);
-    tokens++
+    tokens++;
   }
 };
 
